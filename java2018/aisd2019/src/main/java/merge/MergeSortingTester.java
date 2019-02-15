@@ -1,5 +1,7 @@
 package merge;
 
+import merge.stack.StackMergingSorting;
+
 public class MergeSortingTester {
     public static void main(String[] args) {
         int max=100;
@@ -21,5 +23,25 @@ public class MergeSortingTester {
         mergeSorting.display();
         mergeSorting.mergeSort();
         mergeSorting.display();
+
+        int maxArray=100;
+        int maxStack=10000;
+        StackMergingSorting stackMergingSorting=new StackMergingSorting(maxArray,maxStack);
+
+        stackMergingSorting.insert(64);
+        stackMergingSorting.insert(21);
+        stackMergingSorting.insert(33);
+        stackMergingSorting.insert(70);
+        stackMergingSorting.insert(12);
+        stackMergingSorting.insert(85);
+        stackMergingSorting.insert(44);
+        stackMergingSorting.insert(3);
+        stackMergingSorting.insert(99);
+        stackMergingSorting.insert(0);
+        stackMergingSorting.insert(108);
+        stackMergingSorting.insert(36);
+        stackMergingSorting.display();
+        stackMergingSorting.mergeSort();
+        stackMergingSorting.display();
     }
 }
