@@ -28,4 +28,12 @@ public class MergingStack {
     {
         return stackArray[top];
     }
+
+    public void display(String message)
+    {
+        System.out.print(message+": ");
+        for (int i=0; i<=top;i++)
+            System.out.print(stackArray[i].lowerBound+"/"+stackArray[i].upperBound+" ");
+        System.out.println();
+    }
 }

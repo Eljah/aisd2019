@@ -56,6 +56,7 @@ public class StackMergingSorting {
                 break;
             case 2:
                 currentParams = mergingStack.peek();
+                System.out.println("Stack call with "+currentParams.lowerBound+"-"+currentParams.upperBound);
                 if (currentParams.lowerBound==currentParams.upperBound)
                 {
                     //todo or not todo?
@@ -68,8 +69,11 @@ public class StackMergingSorting {
                 Params newParams = new Params(currentParams.lowerBound, currentParams.upperBound-1, 4);
                 Params newParams2 = new Params(currentParams.lowerBound+1, currentParams.upperBound, 4);
                 //todo the correct parametrization on initializing!!!
+                mergingStack.display("Before"+currentParams.lowerBound+"-"+currentParams.upperBound);
                 mergingStack.push(newParams);
+                mergingStack.display("Middle"+currentParams.lowerBound+"-"+currentParams.upperBound);
                 mergingStack.push(newParams2);
+                mergingStack.display("After"+currentParams.lowerBound+"-"+currentParams.upperBound);
                 codePart = 2;
                 break;
             case 4:
