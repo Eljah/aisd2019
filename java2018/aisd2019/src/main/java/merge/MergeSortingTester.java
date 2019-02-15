@@ -5,24 +5,24 @@ import merge.stack.StackMergingSorting;
 public class MergeSortingTester {
     public static void main(String[] args) {
         int max=100;
-        MergeSorting mergeSorting=new MergeSorting(max);
+        MergingSorting mergingSorting =new MergingSorting(max);
 
-        mergeSorting.insert(64);
-        mergeSorting.insert(21);
-        mergeSorting.insert(33);
-        mergeSorting.insert(70);
-        mergeSorting.insert(12);
-        mergeSorting.insert(85);
-        mergeSorting.insert(44);
-        mergeSorting.insert(3);
-        mergeSorting.insert(99);
-        mergeSorting.insert(0);
-        mergeSorting.insert(108);
-        mergeSorting.insert(36);
+        mergingSorting.insert(64);
+        mergingSorting.insert(21);
+        mergingSorting.insert(33);
+        mergingSorting.insert(70);
+        mergingSorting.insert(12);
+        mergingSorting.insert(85);
+        mergingSorting.insert(44);
+        mergingSorting.insert(3);
+        mergingSorting.insert(99);
+        mergingSorting.insert(0);
+        mergingSorting.insert(108);
+        mergingSorting.insert(36);
 
-        mergeSorting.display();
-        mergeSorting.mergeSort();
-        mergeSorting.display();
+        mergingSorting.display();
+        mergingSorting.mergeSort();
+        mergingSorting.display();
 
         int maxArray=100;
         int maxStack=10000;
