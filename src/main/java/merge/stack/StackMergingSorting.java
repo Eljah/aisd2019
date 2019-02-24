@@ -84,7 +84,6 @@ public class StackMergingSorting {
                 mergingStack.display("Before 4 "+currentParams.lowerBound+"-"+currentParams.upperBound);
                 currentParams=mergingStack.peek();
                 mergingStack.display("After 4 "+currentParams.lowerBound+"-"+currentParams.upperBound);
-                //todo array merge here
                 display();
                 codePart = 2;
                 break;
