@@ -1,6 +1,9 @@
 package select;
 
+import java.sql.SQLOutput;
 import java.util.Arrays;
+import java.util.Random;
+import java.util.stream.Stream;
 
 public class InsertSorting {
     public static int[] sort(int[] array) {
@@ -27,6 +30,7 @@ public class InsertSorting {
         }
 
         while (d>0) {
+            //System.out.println("D: "+d);
             for (int i = d; i < array.length; i++) {
                 result = sortWithIncrement(array, d, i);
             }
@@ -57,14 +61,24 @@ public class InsertSorting {
         }
         array[inner]=temp;
 
-        System.out.println(Arrays.toString(array));
+        //System.out.println(Arrays.toString(array));
         return array;
     }
 
     public static void main(String[] args) {
-        int[] array = new int[]{1, 2, 2323, 231, 5, 2, 2, 1, 4,};
-        System.out.println(Arrays.toString(array));
-        //System.out.println(Arrays.toString(sort(array)));
-        System.out.println(Arrays.toString(shellSort(array)));
+        Random random = new Random();
+        //int[] array = random.ints(0, 10000).limit(1_000_00).toArray();
+        int[] array = random.ints(0, 10000).limit(100).toArray();
+
+        int[] array2 = array.clone();
+        long start1 = System.nanoTime();
+        sort(array);
+        long end1 = System.nanoTime();
+        long start2 = System.nanoTime();
+        shellSort(array2);
+        long end2 = System.nanoTime();
+        System.out.println("Array1 sorted with insertionSort in " + (end1-start1)/1_000_000d + " ms.");
+        System.out.println("Array1 sorted with shellSort in " + (end2-start2)/1_000_000d + " ms.");
+
     }
 }
