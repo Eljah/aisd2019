@@ -12,6 +12,8 @@ public class GraphTest {
         Vertex g=new Vertex("G");
         Vertex h=new Vertex("H");
         Vertex i=new Vertex("I");
+        Vertex j=new Vertex("J");
+        Vertex k=new Vertex("K");
         graph.printMatrix();
         graph.addVertex(a);
         graph.addVertex(b);
@@ -22,6 +24,8 @@ public class GraphTest {
         graph.addVertex(g);
         graph.addVertex(h);
         graph.addVertex(i);
+        graph.addVertex(k);
+        graph.addVertex(j);
         System.out.println();
         graph.printMatrix();
         graph.addEdge(a,b);
@@ -34,11 +38,23 @@ public class GraphTest {
         graph.addEdge(e,g);
         graph.addEdge(f,g);
         graph.addEdge(h,g);
+        graph.addEdge(k,j);
+        graph.addEdge(k,i);
+        graph.addEdge(j,i);
+        //graph.addEdge(a,j);
         graph.printMatrix();
 
         graph.dfs(b);
+        graph.dfs(j);
+        graph.dfs(i);
         System.out.println();
         graph.bfs(b);
+        graph.bfs(j);
+        graph.bfs(i);
+        System.out.println();
+        graph.warshallMatrix();
+        graph.printMatrix();
+
 
 
 

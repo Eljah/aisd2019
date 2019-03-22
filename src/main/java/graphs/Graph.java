@@ -88,6 +88,7 @@ public class Graph {
                         -> {
                     vertex.isVisited = false;
                 }).count();
+        System.out.println();
     }
 
     public void bfs(Vertex start) {
@@ -119,6 +120,26 @@ public class Graph {
                         -> {
                     vertex.isVisited = false;
                 }).count();
+        System.out.println();
+    }
 
+
+    public void warshallMatrix()
+    {
+        for (int i=0; i<currentSize; i++)
+            for (int j=0; j<currentSize; j++)
+                if (matrix[i][j]==0)
+                {
+                    for (int k=0; k<currentSize; k++)
+                    {
+                        if (matrix[k][j]!=0&&k!=j)
+                        {
+                            if (matrix[i][k]==1)
+                            {
+                                matrix[i][j]=1;
+                            }
+                        }
+                    }
+                }
     }
 }
