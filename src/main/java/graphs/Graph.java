@@ -2,6 +2,9 @@ package graphs;
 
 import graphs.Vertex;
 
+import java.util.Deque;
+import java.util.LinkedList;
+
 public class Graph {
     int maxSize;
     int currentSize=0;
@@ -18,29 +21,14 @@ public class Graph {
     public void addVertex(Vertex vertex)
     {
         vertices[currentSize]=vertex;
+        matrix[currentSize][currentSize]=1;
         currentSize++;
     }
 
     public void addEdge(Vertex vertex1, Vertex vertex2)
     {
-        int vertex1Index=-1;
-        for (int i=0;i<vertices.length;i++)
-        {
-            if (vertices[i]==vertex1)
-            {
-                vertex1Index=i;
-                break;
-            }
-        }
-        int vertex2Index=-1;
-        for (int i=0;i<vertices.length;i++)
-        {
-            if (vertices[i]==vertex2)
-            {
-                vertex2Index=i;
-                break;
-            }
-        }
+        int vertex1Index=findVertexIndex(vertex1);
+        int vertex2Index=findVertexIndex(vertex2);
         matrix[vertex1Index][vertex2Index]=1;
         matrix[vertex2Index][vertex1Index]=1;
     }
@@ -64,5 +52,51 @@ public class Graph {
             System.out.println();
 
         }
+    }
+
+    private int findVertexIndex(Vertex vertex)
+    {
+        int start1Index=-1;
+        for (int i=0;i<vertices.length;i++)
+        {
+            if (vertices[i]==vertex)
+            {
+                start1Index=i;
+                break;
+            }
+        }
+        return  start1Index;
+    }
+
+    public void dfs(Vertex start)
+    {
+
+
+        //получили индекс стартовой точки
+
+        Deque<Vertex> stack=new LinkedList<>();
+        stack.push(start);
+        start.isVisited=true;
+        System.out.println("Output:");
+        while (!stack.isEmpty())
+        {
+            Vertex current=stack.poll();
+            System.out.print(current.label);
+            int currentIndex=findVertexIndex(current);
+            for (int i=0;i<currentSize;i++)
+            {
+                if (matrix[currentIndex][i]==1)
+                {
+                    if (!vertices[i].isVisited)
+                    {
+                        stack.push(vertices[i]);
+                        vertices[i].isVisited=true;
+                        //break;
+                    }
+                }
+            }
+
+        }
+
     }
 }

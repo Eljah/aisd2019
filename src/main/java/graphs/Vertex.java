@@ -3,7 +3,7 @@ package graphs;
 public class Vertex {
 
     public String label;
-    public boolean isVisited;
+    public boolean isVisited=false;
 
     public Vertex(String label)
     {

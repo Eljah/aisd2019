@@ -36,6 +36,8 @@ public class GraphTest {
         graph.addEdge(h,g);
         graph.printMatrix();
 
+        graph.dfs(b);
+
 
 
 
