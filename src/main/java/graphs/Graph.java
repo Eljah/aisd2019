@@ -65,7 +65,7 @@ public class Graph {
         Deque<Vertex> stack = new LinkedList<>();
         stack.push(start);
         start.isVisited = true;
-        System.out.println("Output:");
+        System.out.println("Output dfs:");
         while (!stack.isEmpty()) {
             Vertex current = stack.poll();
             System.out.print(current.label);
@@ -94,7 +94,7 @@ public class Graph {
         Queue<Vertex> queue = new LinkedList<>();
         queue.add(start);
         start.isVisited = true;
-        System.out.println("Output:");
+        System.out.println("Output bfs:");
         while (!queue.isEmpty()) {
             Vertex current = queue.poll();
             System.out.print(current.label);
