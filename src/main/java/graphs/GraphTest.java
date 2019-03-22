@@ -37,6 +37,8 @@ public class GraphTest {
         graph.printMatrix();
 
         graph.dfs(b);
+        System.out.println();
+        graph.bfs(b);
 
 
 
