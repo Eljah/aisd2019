@@ -1,6 +1,7 @@
 package trees.binary;
 
 import java.sql.SQLOutput;
+import java.util.concurrent.atomic.AtomicInteger;
 import java.util.function.Consumer;
 import java.util.function.Function;
 import java.util.function.Supplier;
@@ -79,7 +80,12 @@ public class Tree {
     }
 
     public void print() {
-        printValuesInOrder(root, (node)-> {System.out.println(node.getKey() + ": " + node.getPayload());});
+        printValuesInOrder(root, (node)-> {
+            for (int i = 0; i < this.counter; i++) {
+                System.out.print(" ");
+            }
+            System.out.println(node.getKey() + ": " + node.getPayload());
+        });
     }
 
     private void printValuesInOrder(Node node, Consumer<Node> consumer) {
@@ -87,7 +93,7 @@ public class Tree {
         if (node.getRightChild() != null)
             printValuesInOrder(node.getRightChild(), consumer);
         counter--;
-        for (int i = 0; i < counter; i++) System.out.print(" ");
+        //for (int i = 0; i < counter; i++) System.out.print(" ");
 
         consumer.accept(node);
         counter++;
