@@ -15,15 +15,23 @@ public class TestTree {
         tree.insert(19,"19");
         tree.insert(23,"23");
         tree.insert(18,"18");
-
+        tree.insert(37,"37");
+        tree.insert(33,"33");
+        tree.insert(34,"34");
 
         tree.insert(60,"60");
 //        tree.insert(60,"60-2");
 //        tree.insert(45,"45-2");
 
         tree.print();
-        tree.remove(40);
-        tree.remove(25);
+        //tree.remove(40);
+        //
         tree.remove(27);
+
+        tree.print();
+
+        tree.remove(25);
+
+        tree.print();
     }
 }

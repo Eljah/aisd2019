@@ -1,10 +1,6 @@
 package trees.binary;
 
-import java.sql.SQLOutput;
-import java.util.concurrent.atomic.AtomicInteger;
 import java.util.function.Consumer;
-import java.util.function.Function;
-import java.util.function.Supplier;
 
 public class Tree {
     private Node root;
@@ -41,7 +37,7 @@ public class Tree {
     private Node findIfExist(int key) {
         Node current = root;
         //todo remove duplicates
-        while (current != null&&current.getKey()!=key) {
+        while (current != null && current.getKey() != key) {
             if (current.getKey() > key) {
                 current = current.getLeftChild();
             } else {
@@ -51,36 +47,58 @@ public class Tree {
         return current;
     }
 
-    public void remove(int key)
-    {
-        Node toBeRemove=findIfExist(key);
-        if (toBeRemove!=null)
-        {
-            System.out.println("Element to be removed was fount: "+toBeRemove.getKey()+": "+toBeRemove.getPayload());
-            Node localRightMin=findLocalMin(toBeRemove);
-            System.out.println("Element to be moved as successor was fount: "+localRightMin.getKey()+": "+localRightMin.getPayload());
+    public void remove(int key) {
+        Node toBeRemove = findIfExist(key);
+        if (toBeRemove != null) {
+            System.out.println("Element to be removed was fount: " + toBeRemove.getKey() + ": " + toBeRemove.getPayload());
+            Node localRightMin = findLocalMin(toBeRemove);
+            System.out.println("Element to be moved as successor was fount: " + localRightMin.getKey() + ": " + localRightMin.getPayload());
+            Node parentOfToBeRemove = findParentOf(toBeRemove);
+            System.out.println("Element to have ties replaced (parent of the element to be removed)" + parentOfToBeRemove.getKey() + ": " + parentOfToBeRemove.getPayload());
+            Node parentOfLocalRightMin = findParentOf(localRightMin);
+            System.out.println("Element to have ties replaced (parent of the element to be moved)" + parentOfLocalRightMin.getKey() + ": " + parentOfLocalRightMin.getPayload());
 
+//
+//
+            if (parentOfToBeRemove.getRightChild()==toBeRemove) parentOfToBeRemove.setRightChild(localRightMin);
+            if (parentOfToBeRemove.getLeftChild()==toBeRemove) parentOfToBeRemove.setLeftChild(localRightMin);
 
-        }
-        else {
+            parentOfLocalRightMin.setLeftChild(localRightMin.getRightChild());
+
+            localRightMin.setLeftChild(toBeRemove.getLeftChild());
+            localRightMin.setRightChild(toBeRemove.getRightChild());
+
+        } else {
             System.out.println("No element found to be removed");
         }
-    };
+    }
 
-    private Node findLocalMin(Node node)
-    {
-        Node current=node;
-        Node parent=node;
-        while (current!=null)
-        {
-            parent=current;
-            current=current.getLeftChild();
+    ;
+
+    private Node findLocalMin(Node node) {
+        Node parent = node;
+        Node current = parent.getRightChild();
+        if (current != null) {
+            parent = current;
+            while (current != null) {
+                parent = current;
+                current = current.getLeftChild();
+            }
+        } else {
+            current = parent.getLeftChild();
+            parent = current;
         }
-        return parent;
+        if (parent != node)
+            return parent;
+        else return null;
+    }
+
+    private Node findParentOf(Node node) {
+        return tranverse(root, node);
     }
 
     public void print() {
-        printValuesInOrder(root, (node)-> {
+        tranverse(root, (node) -> {
             for (int i = 0; i < this.counter; i++) {
                 System.out.print(" ");
             }
@@ -88,17 +106,30 @@ public class Tree {
         });
     }
 
-    private void printValuesInOrder(Node node, Consumer<Node> consumer) {
+    private void tranverse(Node node, Consumer<Node> consumer) {
         counter++;
         if (node.getRightChild() != null)
-            printValuesInOrder(node.getRightChild(), consumer);
+            tranverse(node.getRightChild(), consumer);
         counter--;
         //for (int i = 0; i < counter; i++) System.out.print(" ");
 
         consumer.accept(node);
         counter++;
         if (node.getLeftChild() != null)
-            printValuesInOrder(node.getLeftChild(),consumer);
+            tranverse(node.getLeftChild(), consumer);
         counter--;
+    }
+
+    private Node tranverse(Node node, Node toCompare) {
+        //System.out.println(node.getKey());
+        if (node.getRightChild() == toCompare || node.getLeftChild() == toCompare) return node;
+        Node result = null;
+        if (node.getRightChild() != null)
+            result = tranverse(node.getRightChild(), toCompare);
+        if (result == null) {
+            if (node.getLeftChild() != null)
+                result = tranverse(node.getLeftChild(), toCompare);
+        }
+        return result;
     }
 }
