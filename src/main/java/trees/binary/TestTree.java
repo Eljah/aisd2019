@@ -33,5 +33,9 @@ public class TestTree {
         tree.remove(25);
 
         tree.print();
+
+        tree.remove(37);
+
+        tree.print();
     }
 }

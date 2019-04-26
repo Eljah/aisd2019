@@ -43,7 +43,6 @@ public class RandomizedSemesterWork2Distribution {
         students.add(new Student("Корченов", "Руслан"));
         students.add(new Student("Мамедов", "Радимир"));
         students.add(new Student("Мухутдинова", "Алия"));
-        students.add(new Student("Мухутдинова", "Алия"));
         students.add(new Student("Мялицин", "Максим"));
         students.add(new Student("Низамов", "Салават"));
         students.add(new Student("Самигуллин", "Илья"));
